@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush Agnihotri | Full-Stack Developer</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #6366f1;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #334155;
+            background: linear-gradient(120deg, #f0f9ff, #e0f2fe);
+            overflow-x: hidden;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+            transition: width 1.5s ease;
+        }
+        
+        .cursor-follower {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.6);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s;
+        }
+        
+        .animated-gradient {
+            background: linear-gradient(-45deg, #3b82f6, #6366f1, #8b5cf6, #3b82f6);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .timeline-item {
+            border-left: 2px solid var(--primary-color);
+            position: relative;
+            padding-left: 20px;
+            margin-left: 10px;
+            padding-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            left: -9px;
+            top: 0;
+        }
+        
+        .section {
+            min-height: auto;
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .code-bg {
+            position: relative;
+        }
+        
+        .code-bg::before {
+            content: "{ }";
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.03;
+            top: -100px;
+            right: -100px;
+            font-family: monospace;
+            z-index: -1;
+        }
+
+        .animated-bot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            z-index: 999;
+            transform-origin: center;
+            animation: botFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .animated-bot:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes botFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .moving-code {
+            position: absolute;
+            color: rgba(0, 0, 0, 0.05);
+            font-family: monospace;
+            font-size: 18px;
+            white-space: nowrap;
+            animation: moveCode 40s linear infinite;
+        }
+
+        @keyframes moveCode {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .photo-frame {
+            position: relative;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: rotate(-3deg);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.3), rgba(99, 102, 241, 0.3));
+            z-index: -1;
+            transform: rotate(3deg) scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        /* For PDF optimization */
+        @media print {
+            .section {
+                page-break-inside: avoid;
+            }
+            #particles-js, .cursor-follower, .animated-bot {
+                display: none;
+            }
+            body {
+                background: white !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cursor Follower -->
+    <div class="cursor-follower hidden md:block"></div>
+    
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Moving Code Background -->
+    <div class="moving-code" style="top: 20%;">function animateElements() { const elements = document.querySelectorAll('.animate'); elements.forEach(el => { el.classList.add('animated'); }); }</div>
+    <div class="moving-code" style="top: 50%;">const portfolio = { name: 'Ayush Agnihotri', skills: ['JavaScript', 'Python', 'React', 'Node.js'], projects: [] };</div>
+    <div class="moving-code" style="top: 80%;">document.addEventListener('DOMContentLoaded', () => { initParticles(); loadProjects(); initAnimations(); });</div>
+    
+    <!-- Animated Bot -->
+    <div class="animated-bot">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="30" width="60" height="50" rx="5" fill="#3b82f6"/>
+            <circle cx="35" cy="45" r="5" fill="#ffffff"/>
+            <circle cx="65" cy="45" r="5" fill="#ffffff"/>
+            <path d="M40 60H60" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+            <rect x="35" y="15" width="30" height="15" rx="7.5" fill="#3b82f6"/>
+            <rect x="45" y="80" width="10" height="15" rx="2" fill="#3b82f6"/>
+            <rect x="25" y="80" width="10" height="15" rx="2" fill="#3b82f6"/>
+            <rect x="65" y="80" width="10" height="15" rx="2" fill="#3b82f6"/>
+        </svg>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg z-50 shadow-md">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-blue-600">A</span>
+                    <span class="text-xl font-bold text-indigo-600">A</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-600">About</a>
+                    <a href="#skills" class="nav-link text-gray-700 hover:text-blue-600">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-blue-600">Projects</a>
+                    <a href="#experience" class="nav-link text-gray-700 hover:text-blue-600">Experience</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="focus:outline-none">
+                        <i class="fas fa-bars text-gray-700"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-6 py-4 space-y-3 bg-white shadow-md">
+                <a href="#home" class="block text-gray-700 hover:text-blue-600">Home</a>
+                <a href="#about" class="block text-gray-700 hover:text-blue-600">About</a>
+                <a href="#skills" class="block text-gray-700 hover:text-blue-600">Skills</a>
+                <a href="#projects" class="block text-gray-700 hover:text-blue-600">Projects</a>
+                <a href="#experience" class="block text-gray-700 hover:text-blue-600">Experience</a>
+                <a href="#contact" class="block text-gray-700 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="section min-h-screen flex items-center">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col-reverse md:flex-row items-center">
+                <div class="md:w-1/2 mt-10 md:mt-0" data-aos="fade-right">                  
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-bounce" data-aos="zoom-in">Hi, I'm Ayush Agnihotri</h1>
+                    <h2 class="text-xl md:text-2xl mb-6 text-gray-600">
+                        <span id="typing-animation" class="text-blue-600"></span>
+                    </h2>
+                    <p class="text-lg text-gray-700 mb-8">Committed to utilizing my skills to further the mission of a company. Passionate about coding, web development, and exploring new technologies.</p>
+                    <div class="flex space-x-4">
+                        <a href="#projects" class="px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition duration-300 shadow-lg">View My Work</a>
+                        <a href="#contact" class="px-6 py-3 rounded-lg border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300">Contact Me</a>
+                    </div>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
+                        <div class="photo-frame rounded-lg overflow-hidden">
+                            <img src="https://page1.genspark.site/v1/base64_upload/236b5f4c405c7075e8836003a9a3d1c2" alt="Ayush Agnihotri" class="w-64 h-64 object-cover">
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </section>
+
+                    <script>
+                        // Typing animation
+                        const typingElement = document.getElementById('typing-animation');
+                        const phrases = ["Full-Stack Developer", "AI Enthusiast", "Tech Explorer"];
+                        let phraseIndex = 0;
+                        let charIndex = 0;
+                        let isDeleting = false;
+
+                        function type() {
+                            const currentPhrase = phrases[phraseIndex];
+                            if (isDeleting) {
+                                typingElement.textContent = currentPhrase.substring(0, charIndex--);
+                            } else {
+                                typingElement.textContent = currentPhrase.substring(0, charIndex++);
+                            }
+
+                            if (!isDeleting && charIndex === currentPhrase.length) {
+                                isDeleting = true;
+                                setTimeout(type, 1000); // Pause before deleting
+                            } else if (isDeleting && charIndex === 0) {
+                                isDeleting = false;
+                                phraseIndex = (phraseIndex + 1) % phrases.length;
+                                setTimeout(type, 500); // Pause before typing next phrase
+                            } else {
+                                setTimeout(type, isDeleting ? 50 : 100); // Typing speed
+                            }
+                        }
+
+                        document.addEventListener('DOMContentLoaded', type);
+                    </script>
+    
+    <!-- About Section -->
+    <section id="about" class="section bg-white">
+        <div class="container mx-auto px-6 code-bg">
+            <h2 class="section-title text-3xl font-bold text-center" data-aos="fade-down">About Me</h2>
+            <div class="mt-12 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0" data-aos="zoom-in">
+                    <div class="photo-frame rounded-lg overflow-hidden">
+                        <img src="https://page1.genspark.site/v1/base64_upload/236b5f4c405c7075e8836003a9a3d1c2" alt="Ayush Agnihotri" class="w-64 h-64 object-cover">
+                    </div>
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <h3 class="text-2xl font-medium mb-4">Who am I?</h3>
+                    <p class="text-gray-700 mb-4">I'm a hardworking College Student pursuing B.Tech in Computer Science & Engineering at Rajkiya Engineering College Pratapgarh. I'm passionate about web development, AI, and creating impactful applications.</p>
+                    <p class="text-gray-700 mb-4">I have proven ability to establish and maintain excellent communication and relationships with clients. I enjoy exploring new technologies and continuously improving my skills.</p>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div>
+                            <p class="font-medium">Name</p>
+                            <p class="text-gray-600">Ayush Agnihotri</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Date of Birth</p>
+                            <p class="text-gray-600">27/11/2005</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Email</p>
+                            <p class="text-gray-600">ayushagnihotri165@gmail.com</p>
+                        </div>
+                        <div>
+                            <p class="font-medium">Location</p>
+                            <p class="text-gray-600">Kanpur, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-3xl font-bold text-center">My Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-medium mb-6">Technical Skills</h3>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Python</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">JavaScript</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">HTML/CSS</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">C Programming</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Node.js</span>
+                                <span>78%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 78%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-xl font-medium mb-6">Professional Skills</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                            <div class="rounded-full bg-blue-100 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-laptop-code text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-medium">Computer Networking</h4>
+                        </div>
+                        <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                            <div class="rounded-full bg-blue-100 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-project-diagram text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-medium">Microsoft Project</h4>
+                        </div>
+                        <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                            <div class="rounded-full bg-blue-100 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-comments text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-medium">Effective Communication</h4>
+                        </div>
+                        <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                            <div class="rounded-full bg-blue-100 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-robot text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-medium">AI Expertise</h4>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-medium mb-6 mt-10">Languages</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span>Hindi (Spoken)</span>
+                            <div class="flex">
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>English (Written)</span>
+                            <div class="flex">
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 opacity-30 mx-1"></span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>English (Spoken)</span>
+                            <div class="flex">
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 opacity-30 mx-1"></span>
+                                <span class="w-3 h-3 rounded-full bg-blue-600 opacity-30 mx-1"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="section bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-3xl font-bold text-center">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                <!-- Resume Builder -->
+                <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center">
+                        <i class="fas fa-file-alt text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Resume Builder</h3>
+                        <p class="text-gray-600 mb-4">A tool for creating professional resumes with customizable templates and easy editing features.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">HTML</span>
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">CSS</span>
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">JavaScript</span>
+                        </div>
+                        <a href="https://thehunter2714.github.io/resume/" target="_blank" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Student Database System -->
+                <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                        <i class="fas fa-database text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Student Database Management</h3>
+                        <p class="text-gray-600 mb-4">A comprehensive system for managing student records, attendance, and performance data.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">JavaScript</span>
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Database</span>
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">UI/UX</span>
+                        </div>
+                        <a href="https://thehunter2714.github.io/STDM/" target="_blank" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Emotional Chatbot AI -->
+                <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                        <i class="fas fa-robot text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Emotional Chatbot AI</h3>
+                        <p class="text-gray-600 mb-4">An intelligent chatbot capable of detecting and responding to emotional cues in conversation.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Python</span>
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">AI</span>
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">NLP</span>
+                        </div>
+                        <a href="https://thehunter2714.github.io/Studycare-Chatbot/" target="_blank" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Space Invader Game -->
+                <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-48 bg-gradient-to-r from-red-500 to-yellow-500 flex items-center justify-center">
+                        <i class="fas fa-gamepad text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Space Invader Game</h3>
+                        <p class="text-gray-600 mb-4">A classic arcade-style space shooter game with modern graphics and challenging gameplay.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">JavaScript</span>
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">HTML5 Canvas</span>
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Game Dev</span>
+                        </div>
+                        <a href="https://thehunter2714.github.io/space_invaders_arcade/" target="_blank" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- ChatCord -->
+                <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="500">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center">
+                        <i class="fas fa-comments text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">ChatCord</h3>
+                        <p class="text-gray-600 mb-4">A real-time chat application featuring multiple rooms, user authentication, and message history.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Node.js</span>
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Socket.io</span>
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Express</span>
+                        </div>
+                        <a href="https://chatcord-9slp.onrender.com" target="_blank" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Project Placeholder for Future -->
+                <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="600">
+                    <div class="h-48 bg-gradient-to-r from-teal-500 to-cyan-500 flex items-center justify-center">
+                        <i class="fas fa-code text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">More Coming Soon</h3>
+                        <p class="text-gray-600 mb-4">I'm always working on exciting new projects. Check my GitHub for the latest updates.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Various Tech</span>
+                        </div>
+                        <a href="https://github.com/TheHUNTER2714" target="_blank" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">Visit GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience & Education Section -->
+    <section id="experience" class="section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-3xl font-bold text-center">Experience & Education</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+                <!-- Experience Column -->
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-medium mb-8 flex items-center">
+                        <span class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center mr-3">
+                            <i class="fas fa-briefcase"></i>
+                        </span>
+                        Work Experience
+                    </h3>
+                    
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-lg">Intern at JP Morgan</h4>
+                        <p class="text-blue-600 mb-2">November 2024 - December 2024</p>
+                        <p class="text-gray-600">Completed a virtual internship at JP Morgan, working on financial technology projects and gaining valuable industry experience.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-lg">Intern at Tata Group</h4>
+                        <p class="text-blue-600 mb-2">October 2024 - October 2024</p>
+                        <p class="text-gray-600">Participated in a virtual internship focused on data analysis, implementing insights from large datasets and creating visualizations.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-lg">Google Arcade Facilitator</h4>
+                        <p class="text-blue-600 mb-2">April 2023 - Present</p>
+                        <p class="text-gray-600">Working as a facilitator in Google's arcade program, helping students learn coding and development skills.</p>
+                    </div>
+                </div>
+                
+                <!-- Education Column -->
+                <div data-aos="fade-left">
+                    <h3 class="text-2xl font-medium mb-8 flex items-center">
+                        <span class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center mr-3">
+                            <i class="fas fa-graduation-cap"></i>
+                        </span>
+                        Education
+                    </h3>
+                    
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-lg">B.Tech, Computer Science & Engineering</h4>
+                        <p class="text-blue-600 mb-2">Rajkiya Engineering College Pratapgarh</p>
+                        <p class="text-gray-600">January 2023 - January 2027</p>
+                        <p class="text-gray-600">Pursuing a Bachelor's degree in Computer Science, focusing on software development and AI technologies.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-lg">Senior Secondary (XII), CBSE</h4>
+                        <p class="text-blue-600 mb-2">Sardar Patel Academy Public School</p>
+                        <p class="text-gray-600">January 2021 - January 2023</p>
+                        <p class="text-gray-600">Completed senior secondary education with focus on Science and Mathematics.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-lg">Secondary (X), CBSE</h4>
+                        <p class="text-blue-600 mb-2">Virendra Swaroop Education Centre</p>
+                        <p class="text-gray-600">January 2021 - January 2021</p>
+                        <p class="text-gray-600">Completed secondary education with excellent academic standing.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Courses -->
+            <div class="mt-16" data-aos="fade-up">
+                <h3 class="text-2xl font-medium mb-8 flex items-center justify-center">
+                    <span class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center mr-3">
+                        <i class="fas fa-certificate"></i>
+                    </span>
+                    Professional Certifications
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/python.svg" alt="Python" class="w-8 h-8 mr-3">
+                            <h4 class="font-bold">Python Essential 3</h4>
+                        </div>
+                        <p class="text-blue-600 mb-2">Cisco</p>
+                        <p class="text-gray-600">August 2024 - September 2024</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/ibm.svg" alt="IBM" class="w-8 h-8 mr-3">
+                            <h4 class="font-bold">AI Programming</h4>
+                        </div>
+                        <p class="text-blue-600 mb-2">IBM</p>
+                        <p class="text-gray-600">June 2024 - July 2024</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/ibm.svg" alt="IBM" class="w-8 h-8 mr-3">
+                            <h4 class="font-bold">Cyber Security Fundamental</h4>
+                        </div>
+                        <p class="text-blue-600 mb-2">IBM</p>
+                        <p class="text-gray-600">June 2024 - July 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-3xl font-bold text-center">Get In Touch</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+                <div data-aos="fade-right">
+                    <h3 class="text-xl font-medium mb-6">Contact Information</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-envelope text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Email</p>
+                                <p class="text-gray-600">ayushagnihotri165@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-phone text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Phone</p>
+                                <p class="text-gray-600">8429090075</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-map-marker-alt text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Location</p>
+                                <p class="text-gray-600">258 b block panki kanpur<br>Kanpur nagar, 208020<br>India</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-medium mb-6 mt-10">Social Profiles</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/TheHUNTER2714" target="_blank" class="w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition duration-300">
+                            <i class="fab fa-github text-gray-700 text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ayush-agnihotri-448254298/" target="_blank" class="w-12 h-12 rounded-full bg-blue-100 hover:bg-blue-200 flex items-center justify-center transition duration-300">
+                            <i class="fab fa-linkedin-in text-blue-700 text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <h3 class="text-xl font-medium mb-6">Send Me a Message</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Hobbies Section -->
+    <section class="section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-3xl font-bold text-center">Hobbies & Interests</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center" data-aos="flip-left" data-aos-delay="100">
+                    <div class="rounded-full bg-blue-100 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-code text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium text-lg mb-2">Coding</h3>
+                    <p class="text-gray-600">Love exploring new programming languages and solving complex problems.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md text-center" data-aos="flip-left" data-aos-delay="200">
+                    <div class="rounded-full bg-blue-100 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-laptop-code text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium text-lg mb-2">Web Development</h3>
+                    <p class="text-gray-600">Creating interactive and responsive web applications from scratch.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md text-center" data-aos="flip-left" data-aos-delay="300">
+                    <div class="rounded-full bg-blue-100 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-gamepad text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium text-lg mb-2">Gaming</h3>
+                    <p class="text-gray-600">Playing Free Fire and Call of Duty in my free time to relax and have fun.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md text-center" data-aos="flip-left" data-aos-delay="400">
+                    <div class="rounded-full bg-blue-100 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-book text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-medium text-lg mb-2">Learning</h3>
+                    <p class="text-gray-600">Exploring new technologies and continuously expanding my knowledge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <span class="text-xl font-bold text-blue-400">A</span>
+                        <span class="text-xl font-bold text-indigo-400">A</span>
+                    </div>
+                    <p class="mt-2 text-gray-400">Full-Stack Developer & AI Enthusiast</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a>
+                    <a href="#about" class="text-gray-400 hover:text-white transition duration-300">About</a>
+                    <a href="#skills" class="text-gray-400 hover:text-white transition duration-300">Skills</a>
+                    <a href="#projects" class="text-gray-400 hover:text-white transition duration-300">Projects</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a>
+                </div>
+                
+                <div class="flex space-x-4 mt-6 md:mt-0">
+                    <a href="https://github.com/TheHUNTER2714" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ayush-agnihotri-448254298/" target="_blank" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Ayush Agnihotri. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize AOS Animation
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+        
+        // Initialize Particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                particles: {
+                    number: {
+                        value: 50,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    color: {
+                        value: '#3b82f6'
+                    },
+                    shape: {
+                        type: 'circle',
+                        stroke: {
+                            width: 0,
+                            color: '#000000'
+                        }
+                    },
+                    opacity: {
+                        value: 0.5,
+                        random: false,
+                        anim: {
+                            enable: false
+                        }
+                    },
+                    size: {
+                        value: 3,
+                        random: true,
+                        anim: {
+                            enable: false
+                        }
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: '#3b82f6',
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: 'none',
+                        random: false,
+                        straight: false,
+                        out_mode: 'out',
+                        bounce: false,
+                        attract: {
+                            enable: false,
+                            rotateX: 600,
+                            rotateY: 1200
+                        }
+                    }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: 'grab'
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: 'push'
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        grab: {
+                            distance: 140,
+                            line_linked: {
+                                opacity: 1
+                            }
+                        },
+                        push: {
+                            particles_nb: 4
+                        }
+                    }
+                },
+                retina_detect: true
+            });
+        });
+        
+        // Mobile Menu Toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Cursor Follower (Desktop Only)
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        if (window.innerWidth > 768) {
+            document.addEventListener('mousemove', (e) => {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            });
+        }
+        
+        // Animated Bot Movement
+        const animatedBot = document.querySelector('.animated-bot');
+        let botPosition = { x: 0, y: 0 };
+        let targetPosition = { x: 0, y: 0 };
+        
+        document.addEventListener('mousemove', (e) => {
+            targetPosition.x = e.clientX;
+            targetPosition.y = e.clientY;
+        });
+        
+        function updateBotPosition() {
+            // Calculate distance between current and target position
+            const dx = targetPosition.x - botPosition.x;
+            const dy = targetPosition.y - botPosition.y;
+            
+            // Ease the movement
+            botPosition.x += dx * 0.02;
+            botPosition.y += dy * 0.02;
+            
+            // Update bot position
+            if (window.innerWidth > 768) {
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                
+                // Keep bot in view
+                const botRight = Math.min(Math.max(botPosition.x, 60), windowWidth - 60);
+                const botBottom = Math.min(Math.max(botPosition.y, 60), windowHeight - 60);
+                
+                animatedBot.style.transform = `translate(${botRight - 30}px, ${botBottom - 30}px) scale(0.6)`;
+            }
+            
+            requestAnimationFrame(updateBotPosition);
+        }
+        
+        updateBotPosition();
+        
+        // Skill bar animation
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.style.width || '0%';
+                    entry.target.style.opacity = 1;
+                }
+            });
+        });
+        
+        skillBars.forEach(bar => {
+            observer.observe(bar);
+        });
+    </script>
+</body>
+</html>
